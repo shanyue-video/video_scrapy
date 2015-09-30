@@ -9,7 +9,7 @@ import scrapy
 
 
 class VideoScrapyItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
-
+    video_title = scrapy.Field()
+    video_source_url = scrapy.Field()
+    video_publish_time = scrapy.Field()
+    video_author = scrapy.Field()

@@ -49,9 +49,10 @@ NEWSPIDER_MODULE = 'video_scrapy.spiders'
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'video_scrapy.middlewares.MyCustomDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+   # 'video_scrapy.middlewares.MyCustomDownloaderMiddleware': 543,
+    'scrapy.downloadermiddlewares.cookies.CookiesMiddleware': 700, #功能是把request的cookie再传回response
+}
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
@@ -61,9 +62,17 @@ NEWSPIDER_MODULE = 'video_scrapy.spiders'
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'video_scrapy.pipelines.SomePipeline': 300,
-#}
+MONGODB_SERVER = "oforever.net"
+MONGODB_PORT = 27017
+# MONGODB_USER = "scrapy"
+MONGODB_USER = "root"
+# MONGODB_PASSWORD = "123456"
+MONGODB_PASSWORD = "dengjing"
+MONGODB_DB = "video_scrapy"
+MONGODB_COLLECTION = "base_video"
+ITEM_PIPELINES = {
+    'video_scrapy.pipelines.VideoScrapyPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -83,3 +92,6 @@ NEWSPIDER_MODULE = 'video_scrapy.spiders'
 #HTTPCACHE_DIR='httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES=[]
 #HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+# LOG_LEVEL = 'INFO'
+LOG_LEVEL = 'WARNING'
