@@ -11,16 +11,17 @@ class IqiyiSpider(CrawlSpider):
 
     rules = (
         Rule(LinkExtractor(allow=r'www/\d+/-------------4-1-2--1-.html'), callback='parse_item', follow=True),
-        # Rule(LinkExtractor(allow=r'www/\d+/-------------.*.html'), callback='parse_item', follow=True),
     )
 
     def parse_detail_item(self, response):
-        # print('detail: ', response.url)
         i = VideoScrapyItem()
-        i['video_title'] = response.xpath('//*[@id="widget-videotitle"]/text()').extract()[0]
-        i['video_source_url'] = response.url
-        i['video_publish_time'] = response.xpath('//*[@id="widget-vshort-ptime"]/text()').extract()[0]
-        i['video_author'] = response.xpath('//*[@id="widget-vshort-un"]/text()').extract()[0]
+        try:
+            i['video_title'] = response.xpath('//*[@id="widget-videotitle"]/text()').extract()[0]
+            i['video_source_url'] = response.url
+            i['video_publish_time'] = response.xpath('//*[@id="widget-vshort-ptime"]/text()').extract()[0]
+            i['video_author'] = response.xpath('//*[@id="widget-vshort-un"]/text()').extract()[0]
+        except Exception, e:
+            print(response.url + ': 出问题了---' + e.message)
         return i
 
 
@@ -28,16 +29,3 @@ class IqiyiSpider(CrawlSpider):
         urls = response.xpath('//*/div[@class="site-piclist_pic"]/a/@href').extract()
         for url in urls:
             yield Request(url, callback=self.parse_detail_item)
-        # return
-        # i = VideoScrapyItem()
-        # i['video_source_url'] = response.url
-        # return i
-        # print(response)
-        # hxs = HtmlXPathSelector(response)
-        # print(dir(response))
-        # print(urls)
-        # for url in urls:
-        # yield Request(url)
-        # i = VideoScrapyItem()
-        # i['video_source_url'] = response.url
-        # yield i

@@ -16,11 +16,14 @@ class VideoScrapyPipeline(object):
     def __init__(self):
         db = MongoClient(MONGODB_HOST)
         db.video_scrapy.authenticate(MONGODB_USER, MONGODB_PASSWORD)
-        print('!!!!!!!!', db.video_scrapy.base_video.find_one())
         self.db = db.video_scrapy.base_video
 
     def process_item(self, item, spider):
         print('--------收录视屏-------')
+<<<<<<< HEAD
         print item
+=======
+        print(item)
+>>>>>>> ca325b41911b57883943dda8b1ef75a82e734ab4
         self.db.insert(dict(item))
         return item
