@@ -6,6 +6,7 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 from pymongo import MongoClient
+import time
 from video_scrapy.settings import MONGODB_HOST
 from video_scrapy.settings import MONGODB_USER
 from video_scrapy.settings import MONGODB_PASSWORD
@@ -19,7 +20,7 @@ class VideoScrapyPipeline(object):
         self.db = db.video_scrapy.base_video
 
     def process_item(self, item, spider):
-        print('--------收录视屏-------')
+        print('--------收录视屏-------' + time.strftime('%Y-%m-%d %H:%M:%S'))
         item['spider'] = spider.name
         print(item)
         self.db.insert(dict(item))
