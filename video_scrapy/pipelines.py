@@ -8,7 +8,6 @@
 from pymongo import MongoClient
 from video_scrapy.settings import MONGODB_HOST
 from video_scrapy.settings import MONGODB_USER
-# from video_scrapy.settings import MONGODB_PORT
 from video_scrapy.settings import MONGODB_PASSWORD
 
 
@@ -18,12 +17,10 @@ class VideoScrapyPipeline(object):
         db = MongoClient(MONGODB_HOST)
         db.video_scrapy.authenticate(MONGODB_USER, MONGODB_PASSWORD)
         print('!!!!!!!!', db.video_scrapy.base_video.find_one())
-        pass
+        self.db = db.video_scrapy.base_video
 
     def process_item(self, item, spider):
         print('--------收录视屏-------')
-        print item['video_title']
-        print item['video_source_url']
-        print item['video_publish_time']
-        print item['video_author']
+        print item
+        self.db.insert(item)
         return item
