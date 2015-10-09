@@ -63,11 +63,10 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 MONGODB_SERVER = "oforever.net"
+MONGODB_HOST = '123.57.6.46'
 MONGODB_PORT = 27017
-# MONGODB_USER = "scrapy"
-MONGODB_USER = "root"
-# MONGODB_PASSWORD = "123456"
-MONGODB_PASSWORD = "dengjing"
+MONGODB_USER = "scrapy"
+MONGODB_PASSWORD = "123456"
 MONGODB_DB = "video_scrapy"
 MONGODB_COLLECTION = "base_video"
 ITEM_PIPELINES = {
