@@ -13,3 +13,4 @@ class VideoScrapyItem(scrapy.Item):
     video_source_url = scrapy.Field()
     video_publish_time = scrapy.Field()
     video_author = scrapy.Field()
+    spider = scrapy.Field()
