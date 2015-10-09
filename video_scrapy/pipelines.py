@@ -22,5 +22,5 @@ class VideoScrapyPipeline(object):
     def process_item(self, item, spider):
         print('--------收录视屏-------')
         print item
-        self.db.insert(item)
+        self.db.insert(dict(item))
         return item
