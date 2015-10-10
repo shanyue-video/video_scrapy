@@ -1,9 +1,11 @@
 import sys
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
+import time
 import tornado
 import tornado.options
 import tornado.web
+import tornado.gen
 
 __author__ = 'dengjing'
 
@@ -16,11 +18,23 @@ class CrawlIqiyi(tornado.web.RequestHandler):
         process.start()
         return
 
+class Iqiyi(tornado.web.RequestHandler):
+
+    @tornado.web.asynchronous
+    @tornado.gen.coroutine
+    def get(self):
+        crawl = CrawlIqiyi()
+        while True:
+            crawl.get()
+            time.sleep(3000)
+        self.finish()
+
 
 def run_scrapy():
     tornado.options.parse_command_line()
     app = tornado.web.Application([
-        (r"/iqiyi", CrawlIqiyi),
+        (r"/crawl_iqiyi", CrawlIqiyi),
+        (r"/iqiyi", Iqiyi),
     ])
     return app
 
