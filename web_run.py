@@ -23,9 +23,10 @@ class Iqiyi(tornado.web.RequestHandler):
     @tornado.web.asynchronous
     @tornado.gen.coroutine
     def get(self):
-        crawl = CrawlIqiyi()
         while True:
-            crawl.get()
+            process = CrawlerProcess(get_project_settings())
+            process.crawl('iqiyi')
+            process.start()
             time.sleep(3000)
         self.finish()
 
