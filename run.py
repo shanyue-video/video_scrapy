@@ -20,6 +20,7 @@ class manage:
         crawler = Crawler(get_project_settings())
         crawler.signals.connect(self.spiderClosed, signal=signals.spider_closed)
         crawler.configure()
+        log.start()
         spider = crawler.spiders.create(spiderName)
         crawler.crawl(spider)
         crawler.start()
@@ -27,7 +28,6 @@ class manage:
     def run(self):
         crawler = Crawler(get_project_settings())
         crawler.configure()
-        log.start()
         for spiderName in crawler.spiders.list():
             self.spiderCounter += 1
             self.setupCrawler(spiderName)
