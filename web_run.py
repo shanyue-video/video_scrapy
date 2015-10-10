@@ -8,12 +8,13 @@ import tornado.web
 __author__ = 'dengjing'
 
 
-class CrawlIqiyi():
+class CrawlIqiyi(tornado.web.RequestHandler):
 
     def get(self):
         process = CrawlerProcess(get_project_settings())
         process.crawl('iqiyi')
         process.start()
+        return
 
 
 def run_scrapy():
