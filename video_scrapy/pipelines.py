@@ -20,8 +20,9 @@ class VideoScrapyPipeline(object):
         self.db = db.video_scrapy.base_video
 
     def process_item(self, item, spider):
-        print('--------收录视屏-------' + time.strftime('%Y-%m-%d %H:%M:%S'))
+        print(time.strftime('%Y-%m-%d %H:%M:%S') + '--------收录视屏-------')
         item['spider'] = spider.name
+        item['ctime'] = time.strftime('%Y-%m-%d %H:%M:%S')
         print(item)
         self.db.insert(dict(item))
         return item

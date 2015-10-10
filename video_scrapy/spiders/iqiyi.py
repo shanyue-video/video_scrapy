@@ -24,7 +24,6 @@ class IqiyiSpider(CrawlSpider):
             print(response.url + ': 出问题了---' + e.message)
         return i
 
-
     def parse_item(self, response):
         urls = response.xpath('//*/div[@class="site-piclist_pic"]/a/@href').extract()
         for url in urls:
