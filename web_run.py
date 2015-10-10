@@ -2,6 +2,7 @@ import sys
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 import tornado
+import tornado.options
 
 __author__ = 'dengjing'
 
