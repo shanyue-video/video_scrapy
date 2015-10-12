@@ -8,8 +8,8 @@ __author__ = 'dengjing'
 class manage:
 
     def run(self):
+        process = CrawlerProcess(get_project_settings())
         while True:
-            process = CrawlerProcess(get_project_settings())
             process.crawl('iqiyi')
             process.start()
             time.sleep(3000)
