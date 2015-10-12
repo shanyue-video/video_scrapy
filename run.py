@@ -9,12 +9,12 @@ class manage:
 
     def run(self):
         process = CrawlerProcess(get_project_settings())
-        while True:
-            process.crawl('iqiyi')
-            process.start()
-            time.sleep(3000)
+        process.crawl('iqiyi')
+        process.start()
 
 
 if __name__ == '__main__':
-    manage = manage()
-    manage.run()
+    while True:
+        manage = manage()
+        manage.run()
+        time.sleep(3)
