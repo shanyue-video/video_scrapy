@@ -14,6 +14,7 @@ if __name__ == '__main__':
     def crawl():
         while True:
             yield runner.crawl('iqiyi')
+            time.sleep(3000)
 
     crawl()
     reactor.run()
