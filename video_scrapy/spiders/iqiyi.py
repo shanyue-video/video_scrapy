@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule, Request
-from video_scrapy.items import VideoScrapyItem
+from items import VideoScrapyItem
 
 
 class IqiyiSpider(CrawlSpider):
